@@ -1,14 +1,23 @@
-# Welcome to your CDK TypeScript project
+# CodePipeline: Unicode Template Size repro
 
-This is a blank project for CDK development with TypeScript.
+This repository demonstrates an issue around a deserialization
+problem the interaction the CodePipeline CloudFormation Action
+experiences when given templates of a certain size that contain
+unicode characters.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## How to run
 
-## Useful commands
+Configure AWS credentials in your current shell, then run:
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+```shell
+npm ci
+npx cdk deploy
+```
+
+Go to the CodePipeline console and observe the failures.
+
+The relevant templates can be found and compared by running:
+
+```shell
+ls -al cdk.out/*/*.template.json
+```
